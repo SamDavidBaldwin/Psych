@@ -1,0 +1,26 @@
+.box[highlighted = true]{
+  background-color: red;
+  cursor: pointer
+}
+
+.box {
+    background-color: blue;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.box.radio-group.radio{
+  /*pointer-events: none;*/
+  opacity: 0.5
+}
+
+#container {
+  align-items: center;
+  align-content: center;
+}
+
+
