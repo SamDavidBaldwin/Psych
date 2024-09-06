@@ -17,6 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
       
           // Create the main box element
           const box = document.createElement('div');
+       
+          if(index > 0){
+            if (box != null){
+              box.setAttribute("Previous_Question", prevBox);
+              console.log(prevBox)
+              prevBox.setAttribute("Next_Box", box);
+            }
+          }
           box.className = 'box';
           box.id = "box" + index
           //Set the first highlighted box
@@ -35,20 +43,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
           ['Always', 'Sometimes', 'Never'].forEach((option, i) => {
             const label = document.createElement('label');
-            const radio = document.createElement('input');
+            const radio = document.createElement('input'); 
             radio.type = 'radio';
-            radio.value = `option${i + 1}`;
-            radio.name = "options"
+            radio.value = option;
+            radio.name = "options" + i
             label.appendChild(radio);
             label.appendChild(document.createTextNode(option));
             radioGroup.appendChild(label);
             radioGroup.querySelectorAll('input[type="radio"][name="options"]').forEach(radio => {
-              radio.addEventListener('change', handleRadioChange);
+              radio.addEventListener('change', handleRadioChange);``
             });
             
           });
 
           box.appendChild(radioGroup);
+
           box.addEventListener('click', function(){
             const boxes = container.querySelectorAll('.box');
             boxes.forEach(box => {
@@ -57,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             box.setAttribute("highlighted", "true")
           });
 
-
+          var prevBox = box;
           // Append the box to the container
           container.appendChild(box);
         });
@@ -67,10 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   createBox();
+
+
   function handleRadioChange(event){
     const selectedValue = event.target.value;
     console.log(`Selected value: ${selectedValue}`);
+    const par = event.target.parentNode.parentNode.parentNode;
+    par.setAttribute("Answered", "True")
+    par.setAttribute("highlighted", "false")
   }
-
 
 });
