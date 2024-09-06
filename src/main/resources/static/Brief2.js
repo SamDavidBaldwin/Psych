@@ -17,14 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
           // Create the main box element
           const box = document.createElement('div');
-       
-          if(index > 0){
-            if (box != null){
-              box.setAttribute("Previous_Question", prevBox);
-              console.log(prevBox)
-              prevBox.setAttribute("Next_Box", box);
-            }
-          }
           box.className = 'box';
           box.id = "box" + index
           //Set the first highlighted box
@@ -66,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
             box.setAttribute("highlighted", "true")
           });
 
-          var prevBox = box;
           // Append the box to the container
           container.appendChild(box);
         });
@@ -75,7 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error fetching the text file:', error); // Log any errors
       });
     }
+
+  function linkBoxes(){
+    var first_box = document.getElementById("box0")
+    var cont = document.getElementById("container")
+  }
   createBox();
+  linkBoxes();
 
 
   function handleRadioChange(event){
