@@ -2,7 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed');
 
   const container = document.getElementById('container');
-  
+  function handleRadioChange(event){
+    const selectedValue = event.target.value;
+    console.log(`Selected value: ${selectedValue}`);
+
+    const par = event.target.parentNode.parentNode.parentNode;
+    par.setAttribute("Answered", "True");
+    par.setAttribute("highlighted", "false");
+
+    const next = document.getElementById(par.getAttribute("next-box"));
+    next.setAttribute("highlighted", "true")
+
+  }
+
   function createBox(index) {
     fetch('Brief2 Questions (Parent).txt')
       .then(response => {
@@ -31,23 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Create and append the radio buttons
           const radioGroup = document.createElement('div');
-          radioGroup.className = 'radio-group';
+          radioGroup.className = 'radio-group' + index;
 
           ['Always', 'Sometimes', 'Never'].forEach((option, i) => {
             const label = document.createElement('label');
             const radio = document.createElement('input'); 
             radio.type = 'radio';
             radio.value = option;
-            radio.name = "options" + i
+            radio.name = "options" + index
             label.appendChild(radio);
             label.appendChild(document.createTextNode(option));
             radioGroup.appendChild(label);
-            radioGroup.querySelectorAll('input[type="radio"][name="options"]').forEach(radio => {
-              radio.addEventListener('change', handleRadioChange);``
-            });
+            radioGroup.querySelectorAll('input[type="radio"][name="options' + index + '"]').forEach(radio => {
+              radio.addEventListener('change', handleRadioChange);
+          });
             
           });
-
           box.appendChild(radioGroup);
 
           box.addEventListener('click', function(){
@@ -55,32 +66,26 @@ document.addEventListener('DOMContentLoaded', () => {
             boxes.forEach(box => {
               box.setAttribute("highlighted", "false")
             });
+
             box.setAttribute("highlighted", "true")
           });
 
           // Append the box to the container
           container.appendChild(box);
+          if(index == 62){
+            const boxes = container.querySelectorAll('.box');
+            boxes.forEach(box => {
+              var next = parseInt(box.id.substring(3), 10)
+              next = next + 1
+              box.setAttribute("next-box", "box" + next)
+            });
+            box.setAttribute("next-box", "box0")
+          }
         });
       })
       .catch(error => {
         console.error('Error fetching the text file:', error); // Log any errors
       });
-    }
-
-  function linkBoxes(){
-    var first_box = document.getElementById("box0")
-    var cont = document.getElementById("container")
   }
-  createBox();
-  linkBoxes();
-
-
-  function handleRadioChange(event){
-    const selectedValue = event.target.value;
-    console.log(`Selected value: ${selectedValue}`);
-    const par = event.target.parentNode.parentNode.parentNode;
-    par.setAttribute("Answered", "True")
-    par.setAttribute("highlighted", "false")
-  }
-
+  createBox()
 });
