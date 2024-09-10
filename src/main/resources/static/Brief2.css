@@ -3,6 +3,11 @@
   cursor: pointer
 }
 
+.box[Unanswered = true]{
+  background-color: yellow;
+  cursor: pointer
+}
+
 .box {
     background-color: blue;
     color: white;
@@ -11,6 +16,7 @@
     text-align: center;
     border-radius: 8px;
     cursor: pointer;
+    scroll-margin-top: 100px; 
 }
 
 .box.radio-group.radio{
@@ -22,5 +28,15 @@
   align-items: center;
   align-content: center;
 }
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
 
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
 
