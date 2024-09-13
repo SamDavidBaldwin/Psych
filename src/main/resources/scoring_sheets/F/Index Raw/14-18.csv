@@ -1,86 +1,86 @@
 Index Raw," Behavior Regulation"," Emotion Regulation"," Cognitive Regulation"
-96,"[null, null]","[null, null]","[null, null]"
-95,"[null, null]","[null, null]","[null, null]"
-94,"[null, null]","[null, null]","[null, null]"
-93,"[null, null]","[null, null]","[null, null]"
-92,"[null, null]","[null, null]","[null, null]"
-91,"[null, null]","[null, null]","[null, null]"
-90,"[null, null]","[null, null]","[null, null]"
-89,"[null, null]","[null, null]","[null, null]"
-88,"[null, null]","[null, null]","[null, null]"
-87,"[null, null]","[null, null]","[null, null]"
-86,"[null, null]","[null, null]","[null, null]"
-85,"[null, null]","[null, null]","[null, null]"
-84,"[null, null]","[null, null]","[null, null]"
-83,"[null, null]","[null, null]","[null, null]"
-82,"[null, null]","[null, null]","[null, null]"
-81,"[null, null]","[null, null]","[null, null]"
-80,"[null, null]","[null, null]","[null, null]"
-79,"[null, null]","[null, null]","[null, null]"
-78,"[null, null]","[null, null]","[null, null]"
-77,"[null, null]","[null, null]","[null, null]"
-76,"[null, null]","[null, null]","[null, null]"
-75,"[null, null]","[null, null]","[null, null]"
-74,"[null, null]","[null, null]","[null, null]"
-73,"[null, null]","[null, null]","[null, null]"
-72,"[null, null]","[null, null]","[null, null]"
-71,"[null, null]","[null, null]","[null, null]"
-70,"[null, null]","[null, null]","[null, null]"
-69,"[null, null]","[null, null]","[null, null]"
-68,"[null, null]","[null, null]","[null, null]"
-67,"[null, null]","[null, null]",
-66,"[null, null]","[null, null]",
-65,"[null, null]","[null, null]",
-64,"[null, null]","[null, null]",
-63,"[null, null]","[null, null]",
-62,"[null, null]","[null, null]",
-61,"[null, null]","[null, null]",
-60,"[null, null]","[null, null]",
-59,"[null, null]","[null, null]",
-58,"[null, null]","[null, null]",
-57,"[null, null]","[null, null]",
-56,"[null, null]","[null, null]",
-55,"[null, null]","[null, null]",
-54,"[null, null]","[null, null]",
-53,"[null, null]","[null, null]",
-52,"[null, null]","[null, null]",
-51,"[null, null]","[null, null]",
-50,"[null, null]","[null, null]",
-49,"[null, null]","[null, null]",
-48,"[null, null]",,
-47,"[null, null]",,
-46,"[null, null]",,
-45,"[null, null]",,
-44,"[null, null]",,
-43,"[null, null]",,
-42,"[null, null]",,
-41,"[null, null]",,
-40,"[null, null]",,
-39,"[null, null]",,
-38,"[null, null]",,
-37,"[null, null]",,
-36,,,
-35,,,
-34,,,
-33,,,
-32,,,
-31,,,
-30,,,
-29,,,
-28,,,
-27,,,
-26,,,
-25,,,
-24,,,
-23,,,
-22,,,
-21,,,
-20,,,
-19,,,
-18,,,
-17,,,
-16,,,
-15,,,
-14,,,
-13,,,
-12,,,
+96,"[null, null]","[null, null]","[87,>99]"
+95,"[null, null]","[null, null]","[86,>99]"
+94,"[null, null]","[null, null]","[85,>99]"
+93,"[null, null]","[null, null]","[85,>99]"
+92,"[null, null]","[null, null]","[84,>99]"
+91,"[null, null]","[null, null]","[83,>99]"
+90,"[null, null]","[null, null]","[82,>99]"
+89,"[null, null]","[null, null]","[81,>99]"
+88,"[null, null]","[null, null]","[81,99]"
+87,"[null, null]","[null, null]","[80,99]"
+86,"[null, null]","[null, null]","[79,99]"
+85,"[null, null]","[null, null]","[78,98]"
+84,"[null, null]","[null, null]","[77,98]"
+83,"[null, null]","[null, null]","[77,98]"
+82,"[null, null]","[null, null]","[76,97]"
+81,"[null, null]","[null, null]","[75,97]"
+80,"[null, null]","[null, null]","[74,97]"
+79,"[null, null]","[null, null]","[74,97]"
+78,"[null, null]","[null, null]","[73,96]"
+77,"[null, null]","[null, null]","[72,96]"
+76,"[null, null]","[null, null]","[71,96]"
+75,"[null, null]","[null, null]","[70,95]"
+74,"[null, null]","[null, null]","[70,95]"
+73,"[null, null]","[null, null]","[69,94]"
+72,"[null, null]","[null, null]","[68,93]"
+71,"[null, null]","[null, null]","[67,92]"
+70,"[null, null]","[null, null]","[67,92]"
+69,"[null, null]","[null, null]","[66,91]"
+68,"[null, null]","[null, null]","[65,90]"
+67,"[null, null]","[null, null]","[64,89]"
+66,"[null, null]","[null, null]","[64,89]"
+65,"[null, null]","[null, null]","[63,88]"
+64,"[null, null]","[null, null]","[62,88]"
+63,"[null, null]","[null, null]","[61,87]"
+62,"[null, null]","[null, null]","[61,87]"
+61,"[null, null]","[null, null]","[60,86]"
+60,"[null, null]","[null, null]","[59,83]"
+59,"[null, null]","[null, null]","[58,82]"
+58,"[null, null]","[null, null]","[58,82]"
+57,"[null, null]","[null, null]","[57,80]"
+56,"[null, null]","[null, null]","[56,78]"
+55,"[null, null]","[null, null]","[56,78]"
+54,"[null, null]","[null, null]","[55,74]"
+53,"[null, null]","[null, null]","[54,74]"
+52,"[null, null]","[null, null]","[53,74]"
+51,"[null, null]","[null, null]","[53,74]"
+50,"[null, null]","[null, null]","[52,70]"
+49,"[null, null]","[null, null]","[51,66]"
+48,"[null, null]","[>90,>99]","[50,63]"
+47,"[null, null]","[>90,>99]","[50,63]"
+46,"[null, null]","[>90,>99]","[49,55]"
+45,"[null, null]","[89,>99]","[48,54]"
+44,"[null, null]","[87,>99]","[48,54]"
+43,"[null, null]","[85,99]","[47,48]"
+42,"[null, null]","[84,99]","[46,45]"
+41,"[null, null]","[82,98]","[45,42]"
+40,"[null, null]","[80,98]","[45,42]"
+39,"[null, null]","[79,98]","[44,35]"
+38,"[null, null]","[77,98]","[43,31]"
+37,"[null, null]","[75,95]","[42,28]"
+36,"[>90,>99]","[73,95]","[42,28]"
+35,"[89,>99]","[72,93]","[41,22]"
+34,"[87,>99]","[70,92]","[40,17]"
+33,"[84,99]","[68,92]","[39,13]"
+32,"[82,99]","[66,90]","[39,13]"
+31,"[80,98]","[65,89]","[null, null]"
+30,"[77,98]","[63,87]","[null, null]"
+29,"[75,98]","[61,86]","[null, null]"
+28,"[73,97]","[58,83]","[null, null]"
+27,"[71,95]","[57,81]","[null, null]"
+26,"[69,95]","[56,78]","[null, null]"
+25,"[67,93]","[54,75]","[null, null]"
+24,"[65,89]","[52,70]","[null, null]"
+23,"[63,89]","[51,66]","[null, null]"
+22,"[61,87]","[49,59]","[null, null]"
+21,"[59,84]","[48,55]","[null, null]"
+20,"[57,82]","[46,50]","[null, null]"
+19,"[55,78]","[44,41]","[null, null]"
+18,"[52,72]","[43,25]","[null, null]"
+17,"[50,67]","[41,24]","[null, null]"
+16,"[48,59]","[40,15]","[null, null]"
+15,"[46,59]","[null, null]","[null, null]"
+14,"[44,43]","[null, null]","[null, null]"
+13,"[42,32]","[null, null]","[null, null]"
+12,"[40,15]","[null, null]","[null, null]"
