@@ -239,12 +239,12 @@ document.addEventListener('DOMContentLoaded', () => {
     var ERI = shift_score + emotional_control_score
     var CRI = initiate_score + working_memory_score + plan_organize_score + task_monitor_score + organization_of_materials_score
     var GEC = BRI + ERI + CRI
-    console.log("14BRI: " + BRI)
+    console.log("BRI: " + BRI)
     console.log("ERI: " + ERI)
     console.log("CRI: " + CRI)
     console.log("GEC: " + GEC)
 
-    var list = [inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,organization_of_materials, BRI,ERI,CRI,GEC]
+    var list = [inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,organization_of_materials,BRI,ERI,CRI,GEC]
     crossReference(list)
     
     a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(content);
@@ -295,22 +295,79 @@ document.addEventListener('DOMContentLoaded', () => {
     var gender = document.getElementById("Patient Gender").value
     var age = document.getElementById("Patient Age").value
     var arr = []
+    var final = []
     if(gender == "Male"){
       if(age >= 5 && age <= 7){
         fetch('scoring_sheets/M/Scale Raw/5-7.csv')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text(); 
+        })
         .then(data => {
           lines = data.split("\r\n")
           lines.forEach((line, index) =>{
-            const regex = /,(?![^\[]*\])/g;
-            line = line.split(regex)
-            arr.push(line)
+            const regex = /,(?![^\[]*\])/g; 
+            arr.push(line.split(regex))
           })
-          var tuple = 0
           list.slice(0,8).forEach((value, index) => {
-            tuple = finder(arr, value, index + 1)
-            console.log(arr[0][index+1] + " T-score: " + tuple[0] + " Inhibit %ile: " + tuple[1])
+            var tuple = finder(arr, value, index + 1)
+            final.push(arr[0][index+1] + " T-score: " + tuple[0] + arr[0][index+1] + " %ile: " + tuple[1])
           });
         })
+        .catch(error => {
+          console.error('Error fetching the text file:', error); // Log any errors
+        });
+        var arr2 = []
+        final2 = []
+        fetch('scoring_sheets/M/Index Raw/5-7.csv')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text(); 
+        })
+        .then(data => {
+          lines = data.split("\r\n")
+          lines.forEach((line, index) =>{
+            const regex = /,(?![^\[]*\])/g; 
+            arr2.push(line.split(regex))
+          })
+          list.slice(9,12).forEach((value, index) => {
+            tuple = finder(arr2, value, index + 1)
+            final.push(arr2[0][index+1] + " T-score: " + tuple[0] + arr2[0][index+1] + " %ile: " + tuple[1])
+          });
+          
+        })
+      
+        .catch(error => {
+          console.error('Error fetching the text file:', error); // Log any errors
+        });
+        var arr3 = []
+
+        fetch('scoring_sheets/M/Total Raw/5-7.csv')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text(); 
+        })
+        
+        .then(data => {
+          lines = data.split("\r\n")
+          lines.forEach((line, index) =>{
+            const regex = /,(?![^\[]*\])/g; 
+            arr3.push(line.split(regex))
+          })
+          var tuple = arr3[1][181-parseInt(list[12])].slice(2,-2).split(",")
+          final.push(arr2[0][0] + " T-score: " + tuple[0] + " " + arr2[0][0] + " %ile: " + tuple[1])
+        })
+      
+        .catch(error => {
+          console.error('Error fetching the text file:', error); // Log any errors
+        });
+        console.log(final)
       }
       if(age >= 8 && age <= 10){
         console.log("B")
@@ -339,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function finder(arr, score, col){
-    for (let i = 0; i < 22; i++){
+    for (let i = 0; i < arr.length; i++){
       if(arr[i][0] == score){
         return arr[i][col].slice(2,-2).split(",")
       }
