@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
               next = next + 1
               box.setAttribute("next-box", "box" + next)
             });
-            box.setAttribute("next-box", "box0")
           }
         });
       })
@@ -121,28 +120,47 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function tabulate(){
-    const boxes = container.querySelectorAll('.box');
-    var allAnswered = true;
-    boxes.forEach(box => {
-      var input = document.querySelector(`input[name="${"options" + box.id.substring(3)}"]:checked`);
-     
-      if(input == null){
-        allAnswered = false
-        console.log("Not Answered ")
-        box.setAttribute("Unanswered", "true")
+    //Check if patient info is filled out
+    var info = document.getElementById("Patient Information").childNodes
+    var finished = true
+    Array.from(info).forEach((child, index) => {
+      if(child.className == "form-group"){
+        var i = child.childNodes[3]
+        if(i.value.trim() == ""){
+          child.setAttribute("Unanswered", true)
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+          finished = false
+          return
+        }
       }
-    });
-    var text = "Continue?"
-    if(allAnswered == false){
-      text = "Not all questions answered, do you want to continue?"
-    }
-    
-    if(window.confirm(text)){
-      console.log("END")
-      scoring()
-    }
-    else{
-      console.log("Finishing")
+    })
+    if(finished == true){
+      const boxes = container.querySelectorAll('.box');
+      var allAnswered = true;
+      boxes.forEach(box => {
+        var input = document.querySelector(`input[name="${"options" + box.id.substring(3)}"]:checked`);
+        if(input == null){
+          allAnswered = false
+          console.log("Not Answered ")
+          box.setAttribute("Unanswered", "true")
+        }
+      });
+      
+      var text = "Continue?"
+      if(allAnswered == false){
+        text = "Not all questions answered, do you want to continue?"
+      }
+      
+      if(window.confirm(text)){
+        console.log("END")
+        scoring()
+      }
+      else{
+        console.log("Finishing")
+      }
     }
   }
 
@@ -167,47 +185,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const entry = Object.entries(ASN).find(([key, value]) => value[0] === input.value);
         switch(true){
           case inhibit.includes(index+1):
-            console.log(entry[1][1])
             inhibit_score += entry[1][1]
             break;
 
           case self_monitor.includes(index+1):
-            console.log(entry[1][1])
             self_monitor_score += entry[1][1]
             break;
 
           case shift.includes(index+1):
-            console.log(entry[1][1])
             shift_score += entry[1][1]
             break;
 
           case emotional_control.includes(index+1):
-            console.log(entry[1][1])
             emotional_control_score += entry[1][1]
             break;
 
           case initiate.includes(index+1):
-            console.log(entry[1][1])
             initiate_score += entry[1][1]
             break;
 
           case working_memory.includes(index+1):
-            console.log(entry[1][1])
             working_memory_score += entry[1][1]
             break;
 
           case plan_organize.includes(index+1):
-            console.log(entry[1][1])
             plan_organize_score += entry[1][1]
             break;
 
           case task_monitor.includes(index+1):
-            console.log(entry[1][1])
             task_monitor_score += entry[1][1]
             break;
 
           case organization_of_materials.includes(index+1):    
-            console.log(entry[1][1])
             organization_of_materials_score += entry[1][1]
             break;
         }
@@ -230,11 +239,13 @@ document.addEventListener('DOMContentLoaded', () => {
     var ERI = shift_score + emotional_control_score
     var CRI = initiate_score + working_memory_score + plan_organize_score + task_monitor_score + organization_of_materials_score
     var GEC = BRI + ERI + CRI
-    console.log("BRI: " + BRI)
+    console.log("14BRI: " + BRI)
     console.log("ERI: " + ERI)
     console.log("CRI: " + CRI)
     console.log("GEC: " + GEC)
 
+    crossReference(inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,BRI,ERI,CRI,GEC)
+    
     a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(content);
     a.download = fileName;
 
@@ -250,25 +261,76 @@ document.addEventListener('DOMContentLoaded', () => {
   function manual(){
     document.addEventListener("keydown", (event) =>{
       const key = event.key;
+      const formElements = ["INPUT"];
       const box = document.querySelector('[highlighted="true"]');
-      if(["1","2", "3"].includes(key)){
-        if (box.getAttribute("highlighted") == "true"){
-          const radio = box.childNodes[1];
-          radio.childNodes[key-1].childNodes[0].checked = true
-          box.setAttribute("Answered", "True");
-          box.setAttribute("Unanswered", "false")
-          box.setAttribute("highlighted", "false");
-          const next = document.getElementById(box.getAttribute("next-box"))
-          next.setAttribute("highlighted", "true")
-          if(box != document.getElementById("box62"))
-            next.scrollIntoView({ behavior: 'smooth' });
+      if(box != null){
+        if (["1", "2", "3"].includes(key) && !formElements.includes(event.target.tagName)) {
+          if (box.getAttribute("highlighted") == "true"){
+      
+            const radio = box.childNodes[1];
+            radio.childNodes[key-1].childNodes[0].checked = true
+            
+            if(box != document.getElementById("box62")){
+              box.setAttribute("Answered", "True");
+              box.setAttribute("Unanswered", "false")
+              box.setAttribute("highlighted", "false");
+              const next = document.getElementById(box.getAttribute("next-box"))
+              next.setAttribute("highlighted", "true")
+              next.scrollIntoView({ behavior: 'smooth' });
+            }
+            else{
+              box.setAttribute("Answered", "True");
+              box.setAttribute("Unanswered", "false")
+              box.setAttribute("highlighted", "false");
+            }
+            return
           }
-          return
+        }
       }
-    })
+    });
   }
-
-
-
-
+  
+  function crossReference(is,sms,ss,ems,is,wms,pos,tms,bri,eri,cri,gec){
+    var gender = document.getElementById("Patient Gender").value
+    var age = document.getElementById("Patient Age").value
+    console.log(gender)
+    if(gender == "Male"){
+      if(age >= 5 && age <= 7){
+        fetch('scoring_sheets/M/Scale Raw/5-6.csv')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text(); 
+        })
+        .then(data => {
+          console.log(data)
+        })
+        console.log("A")
+      }
+      if(age >= 8 && age <= 10){
+        console.log("B")
+      }
+      if(age >= 11 && age <= 13){
+        console.log("C")
+      }
+      if(age >= 14 && age <= 18){
+        console.log("D")
+      }
+    }
+    if(gender == "Female"){
+      if(age >= 5 && age <= 7){
+        console.log("E")
+      }
+      if(age >= 8 && age <= 10){
+        console.log("F")
+      }
+      if(age >= 11 && age <= 13){
+        console.log("G")
+      }
+      if(age >= 14 && age <= 18){
+        console.log("H")
+      }
+    }
+  }
 });
