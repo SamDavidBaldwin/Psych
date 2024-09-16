@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('container');
   document.getElementById("Submit").addEventListener("click", tabulate)
   createBox()
+  manual()
 
   const ASN = {
     Often: ["Often", 3],
@@ -96,12 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
             boxes.forEach(box => {
               box.setAttribute("highlighted", "false")
             });
-
             box.setAttribute("highlighted", "true")
           });
 
           // Append the box to the container
           container.appendChild(box);
+
+          //Setup link structure
           if(index == 62){
             const boxes = container.querySelectorAll('.box');
             boxes.forEach(box => {
@@ -245,7 +247,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  function isEnumValue(enumObj, value) {
-    return Object.values(enumObj).includes(value);
-}
+  function manual(){
+    document.addEventListener("keydown", (event) =>{
+      const key = event.key;
+      const box = document.querySelector('[highlighted="true"]');
+      if(["1","2", "3"].includes(key)){
+        if (box.getAttribute("highlighted") == "true"){
+          const radio = box.childNodes[1];
+          radio.childNodes[key-1].childNodes[0].checked = true
+          box.setAttribute("Answered", "True");
+          box.setAttribute("Unanswered", "false")
+          box.setAttribute("highlighted", "false");
+          const next = document.getElementById(box.getAttribute("next-box"))
+          next.setAttribute("highlighted", "true")
+          if(box != document.getElementById("box62"))
+            next.scrollIntoView({ behavior: 'smooth' });
+          }
+          return
+      }
+    })
+  }
+
+
+
+
 });
