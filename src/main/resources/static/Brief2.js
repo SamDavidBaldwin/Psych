@@ -244,7 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("CRI: " + CRI)
     console.log("GEC: " + GEC)
 
-    crossReference(inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,BRI,ERI,CRI,GEC)
+    var list = [inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,organization_of_materials, BRI,ERI,CRI,GEC]
+    crossReference(list)
     
     a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(content);
     a.download = fileName;
@@ -290,23 +291,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  function crossReference(is,sms,ss,ems,is,wms,pos,tms,bri,eri,cri,gec){
+  function crossReference(list){
     var gender = document.getElementById("Patient Gender").value
     var age = document.getElementById("Patient Age").value
-    console.log(gender)
+    var arr = []
     if(gender == "Male"){
       if(age >= 5 && age <= 7){
-        fetch('scoring_sheets/M/Scale Raw/5-6.csv')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-          }
-          return response.text(); 
-        })
+        fetch('scoring_sheets/M/Scale Raw/5-7.csv')
         .then(data => {
-          console.log(data)
+          lines = data.split("\r\n")
+          lines.forEach((line, index) =>{
+            const regex = /,(?![^\[]*\])/g;
+            line = line.split(regex)
+            arr.push(line)
+          })
+          var tuple = 0
+          list.slice(0,8).forEach((value, index) => {
+            tuple = finder(arr, value, index + 1)
+            console.log(arr[0][index+1] + " T-score: " + tuple[0] + " Inhibit %ile: " + tuple[1])
+          });
         })
-        console.log("A")
       }
       if(age >= 8 && age <= 10){
         console.log("B")
@@ -330,6 +334,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if(age >= 14 && age <= 18){
         console.log("H")
+      }
+    }
+  }
+
+  function finder(arr, score, col){
+    for (let i = 0; i < 22; i++){
+      if(arr[i][0] == score){
+        return arr[i][col].slice(2,-2).split(",")
       }
     }
   }
