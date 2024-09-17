@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const container = document.getElementById('container');
   document.getElementById("Submit").addEventListener("click", tabulate)
+  let output = new Array(12).fill(null);
   createBox()
   manual()
 
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var plan_organize = [7,15,23,35,44,52,57,59]
   var task_monitor = [5,21,29,33,42]
   var organization_of_materials = [8,37,45,47,53,63]
+  var infrequency_scale = [18,36,54]
 
   /*for(i = 1; i < 63; i++){
     if (inhibit.includes(i) || self_monitor.includes(i) || shift.includes(i) || emotional_control.includes(i) || initiate.includes(i) || working_memory.includes(i) || plan_organize.includes(i) ||task_monitor.includes(i) ||organization_of_materials.includes(i)){
@@ -291,107 +293,141 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  function crossReference(list){
-    var gender = document.getElementById("Patient Gender").value
-    var age = document.getElementById("Patient Age").value
-    var arr = []
-    var final = []
-    if(gender == "Male"){
-      if(age >= 5 && age <= 7){
-        fetch('scoring_sheets/M/Scale Raw/5-7.csv')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-          }
-          return response.text(); 
-        })
-        .then(data => {
-          lines = data.split("\r\n")
-          lines.forEach((line, index) =>{
-            const regex = /,(?![^\[]*\])/g; 
-            arr.push(line.split(regex))
-          })
-          list.slice(0,8).forEach((value, index) => {
-            var tuple = finder(arr, value, index + 1)
-            final.push(arr[0][index+1] + " T-score: " + tuple[0] + arr[0][index+1] + " %ile: " + tuple[1])
-          });
-        })
-        .catch(error => {
-          console.error('Error fetching the text file:', error); // Log any errors
-        });
-        var arr2 = []
-        final2 = []
-        fetch('scoring_sheets/M/Index Raw/5-7.csv')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-          }
-          return response.text(); 
-        })
-        .then(data => {
-          lines = data.split("\r\n")
-          lines.forEach((line, index) =>{
-            const regex = /,(?![^\[]*\])/g; 
-            arr2.push(line.split(regex))
-          })
-          list.slice(9,12).forEach((value, index) => {
-            tuple = finder(arr2, value, index + 1)
-            final.push(arr2[0][index+1] + " T-score: " + tuple[0] + arr2[0][index+1] + " %ile: " + tuple[1])
-          });
-          
-        })
-      
-        .catch(error => {
-          console.error('Error fetching the text file:', error); // Log any errors
-        });
-        var arr3 = []
-
-        fetch('scoring_sheets/M/Total Raw/5-7.csv')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-          }
-          return response.text(); 
-        })
-        
-        .then(data => {
-          lines = data.split("\r\n")
-          lines.forEach((line, index) =>{
-            const regex = /,(?![^\[]*\])/g; 
-            arr3.push(line.split(regex))
-          })
-          var tuple = arr3[1][181-parseInt(list[12])].slice(2,-2).split(",")
-          final.push(arr2[0][0] + " T-score: " + tuple[0] + " " + arr2[0][0] + " %ile: " + tuple[1])
-        })
-      
-        .catch(error => {
-          console.error('Error fetching the text file:', error); // Log any errors
-        });
-        console.log(final)
+  async function crossReference(list) {
+    var gender = document.getElementById("Patient Gender").value;
+    var age = parseInt(document.getElementById("Patient Age").value);
+    var file1 = 'scoring_sheets/'
+    var file2 = 'scoring_sheets/'
+    var file3 = 'scoring_sheets/'
+  try {
+    if (gender === "Male") {
+        file1 += "M/Scale Raw/"
+        file2 += "M/Index Raw/"
+        file3 += "M/Total Raw/"
+      if (age >= 5 && age <= 7) {
+        file1 += "5-7.csv"
+        file2 += "5-7.csv"
+        file3 += "5-7.csv" 
+      } else if (age >= 8 && age <= 10) {
+        file1 += "8-10.csv"
+        file2 += "8-10.csv"
+        file3 += "8-10.csv"
+      } else if (age >= 11 && age <= 13) {
+        file1 += "11-13.csv"
+        file2 += "11-13.csv"
+        file3 += "11-13.csv"
+      } else if (age >= 14 && age <= 18) {
+        file1 += "14-18.csv"
+        file2 += "14-18.csv"
+        file3 += "14-18.csv"
       }
-      if(age >= 8 && age <= 10){
-        console.log("B")
-      }
-      if(age >= 11 && age <= 13){
-        console.log("C")
-      }
-      if(age >= 14 && age <= 18){
-        console.log("D")
+    } else if (gender === "Female") {
+        file1 += "F/Scale Raw/"
+        file2 += "F/Index Raw/"
+        file3 += "F/Total Raw/"
+      if (age >= 5 && age <= 7) {
+        file1 += "5-7.csv"
+        file2 += "5-7.csv"
+        file3 += "5-7.csv" 
+      } else if (age >= 8 && age <= 10) {
+        file1 += "8-10.csv"
+        file2 += "8-10.csv"
+        file3 += "8-10.csv"
+      } else if (age >= 11 && age <= 13) {
+        file1 += "11-13.csv"
+        file2 += "11-13.csv"
+        file3 += "11-13.csv"
+      } else if (age >= 14 && age <= 18) {
+        file1 += "14-18.csv"
+        file2 += "14-18.csv"
+        file3 += "14-18.csv"
       }
     }
-    if(gender == "Female"){
-      if(age >= 5 && age <= 7){
-        console.log("E")
+    let [final, final2, final3] = await Promise.all([
+      Scale(file1, list),
+      Index(file2, list),
+      Total(file3, list)
+    ]);
+    console.log(final)
+    console.log(final2)
+    console.log(final3)
+    //TODO fix this to be better
+    output = final[0] + "\n" + final[1] + "\n" + final2[0]+ "\n"+ final[2]+ "\n" + final[3] + "\n"+ final2[1]+ "\n" + final[4] + "\n" + final[5]+ "\n" + final[6]+ "\n"+ final[7] + "\n" +final2[2] + "\n"+ final3
+
+    console.log(output);
+  } catch (error) {
+      console.error('Error in crossReference function:', error);
+  }
+}
+
+
+  async function Scale(file1, list) {
+    try {
+      let response = await fetch(file1);
+      if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
       }
-      if(age >= 8 && age <= 10){
-        console.log("F")
-      }
-      if(age >= 11 && age <= 13){
-        console.log("G")
-      }
-      if(age >= 14 && age <= 18){
-        console.log("H")
-      }
+      let data = await response.text();
+      let arr = [];
+        let final = [];
+        let lines = data.split("\r\n");
+        lines.forEach((line) => {
+            const regex = /,(?![^\[]*\])/g;
+            arr.push(line.split(regex));
+        });
+        list.slice(0, 8).forEach((value, index) => {
+            var tuple = finder(arr, value, index + 1);
+            final.push(arr[0][index + 1] + " T-score: " + tuple[0] + " %ile: " + tuple[1]);
+        });
+        return final;
+    } catch (error) {
+        console.error('Error fetching the Scale file:', error);
+    }
+  }
+
+  async function Total(file3, list) {
+    try {
+        let response = await fetch(file3);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        let data = await response.text();
+        let arr3 = [];
+        let final3 = [];
+        let lines = data.split("\r\n");
+        lines.forEach((line) => {
+            const regex = /,(?![^\[]*\])/g;
+            arr3.push(line.split(regex));
+        });
+        let tuple = arr3[1][181 - parseInt(list[12])].slice(2, -2).split(",");
+        final3.push(arr3[0][0] + " T-score: " + tuple[0]  + " %ile: " + tuple[1]);
+        return final3;
+    } catch (error) {
+        console.error('Error fetching the Total file:', error);
+    }
+  }
+
+  async function Index(file2, list) {
+    try {
+        let response = await fetch(file2);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        let data = await response.text();
+        let arr2 = [];
+        let final2 = [];
+        let lines = data.split("\r\n");
+        lines.forEach((line) => {
+            const regex = /,(?![^\[]*\])/g;
+            arr2.push(line.split(regex));
+        });
+        list.slice(9, 12).forEach((value, index) => {
+            var tuple = finder(arr2, value, index + 1);
+            final2.push(arr2[0][index + 1] + " T-score: " + tuple[0] +  " %ile: " + tuple[1]);
+        });
+        return final2;
+    } catch (error) {
+        console.error('Error fetching the Index file:', error);
     }
   }
 
@@ -403,3 +439,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
