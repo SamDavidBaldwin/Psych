@@ -46,6 +46,16 @@ form {
 
 }
 
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 10px;
+  background-color: green;
+  z-index: 1000; 
+}
+
 
 @keyframes flash {
   0% {

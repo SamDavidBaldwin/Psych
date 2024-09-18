@@ -3,15 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const container = document.getElementById('container');
   document.getElementById("Submit").addEventListener("click", tabulate)
+  const progress = document.getElementById("progress-bar")
   let output = new Array(12).fill(null);
   createBox()
   manual()
 
-  const ASN = {
+  const ASO = {
     Often: ["Often", 3],
     Sometimes: ["Sometimes",2],
     Never: ["Never",1]
   }
+
+  /*Descriptor 
+    59 and lower typical 
+    60 - 64 slightly elevated 
+    65 - 69 elevated
+    70 and above highly elevated 
+  */  
 
   var inhibit = [1,10,16,24,30,39,48,62]
   var self_monitor = [4,13,20,26]
@@ -22,7 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
   var plan_organize = [7,15,23,35,44,52,57,59]
   var task_monitor = [5,21,29,33,42]
   var organization_of_materials = [8,37,45,47,53,63]
+
   var infrequency_scale = [18,36,54]
+  var negativity_scale = [14,28,30,34,39,41,58,60]
+  var inconsistency_scale = [[5,21], [9,55], [10,48], [17,40], [20,26], [22,56], [25,50], [37,63]]
+
+  var answered = 0
 
   /*for(i = 1; i < 63; i++){
     if (inhibit.includes(i) || self_monitor.includes(i) || shift.includes(i) || emotional_control.includes(i) || initiate.includes(i) || working_memory.includes(i) || plan_organize.includes(i) ||task_monitor.includes(i) ||organization_of_materials.includes(i)){
@@ -44,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const next = document.getElementById(par.getAttribute("next-box"));
     next.setAttribute("highlighted", "true")
+    answered += 1
+    const clampedPercent = Math.max(0, Math.min(100, 100 * answered/62));
+    progress.style.width = clampedPercent + '%';
     if(par != document.getElementById("box62"))
       next.scrollIntoView({ behavior: 'smooth' });
   }
@@ -172,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var content = ""
     const boxes = container.querySelectorAll('.box');
     const fileName = 'example.txt';
+
     inhibit_score = 0
     self_monitor_score = 0
     shift_score = 0
@@ -181,10 +198,17 @@ document.addEventListener('DOMContentLoaded', () => {
     plan_organize_score = 0
     task_monitor_score = 0
     organization_of_materials_score = 0
+
+    negativity_score = 0
+    infrequency_score = 0
+    inconsistency_score = 0 
+
+    inconsistency_dict = {}
+
     boxes.forEach((box, index) => {
       var input = document.querySelector(`input[name="${"options" + box.id.substring(3)}"]:checked`);
       if(input != null){
-        const entry = Object.entries(ASN).find(([key, value]) => value[0] === input.value);
+        const entry = Object.entries(ASO).find(([key, value]) => value[0] === input.value);
         switch(true){
           case inhibit.includes(index+1):
             inhibit_score += entry[1][1]
@@ -222,6 +246,17 @@ document.addEventListener('DOMContentLoaded', () => {
             organization_of_materials_score += entry[1][1]
             break;
         }
+        switch(true){
+          case negativity_scale.includes(index+1):
+            negativity_score += 1
+            break
+          case infrequency_scale.includes(index+1):
+            if(entry[1][1] == 2 || entry[1][1] == 3){
+              infrequency_score += 1
+            }
+          case inconsistency_scale.some(pair => pair[0] === index+1 || pair[1] === index+1):
+            inconsistency_dict[index+1] = entry[1][1]
+        }
         content = content + index + ": " + input.value + "\n"
       }
       else{
@@ -245,6 +280,13 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("ERI: " + ERI)
     console.log("CRI: " + CRI)
     console.log("GEC: " + GEC)
+    var negativity_percentile = np_calc(negativity_score)
+    var infrequency_percentile = if_calc(infrequency_score)
+    console.log("Negativity Score: " +  negativity_score + " %ile: " + negativity_percentile)
+    console.log("Infrequency Score: " + infrequency_score+ " %ile: " + infrequency_percentile)
+    inconsistency_score = calcInconsistency(inconsistency_dict)
+    var inconsistency_percentile = ic_calc(inconsistency_score)
+    console.log("inconsistency Score: " + inconsistency_score+ " %ile: " + inconsistency_percentile)
 
     var list = [inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,organization_of_materials,BRI,ERI,CRI,GEC]
     crossReference(list)
@@ -260,6 +302,52 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.removeChild(a);
 
   }
+  function np_calc(score){
+    if(score <= 6){
+      return "<= 98"
+    }
+    else if (score == 7){
+      return "99"
+    }
+    else{
+      return ">99"
+    }
+  }
+
+  function if_calc(score){
+    if(score == 0){
+      return "99"
+    }
+    else{
+      return ">99"
+    }
+  }
+
+  function ic_calc(score){
+    if(score <= 6){
+      return "<= 98"
+    }
+    else if (score >= 7 && score <= 10){
+      return "99"
+    }
+    else{
+      return ">99"
+    }
+  }
+
+  function calcInconsistency(dict){
+    var is = 0
+    is += Math.abs(dict[5] - dict[21])
+    is += Math.abs(dict[9] - dict[55])
+    is += Math.abs(dict[10] - dict[48])
+    is += Math.abs(dict[17] - dict[40])
+    is += Math.abs(dict[20] - dict[26])
+    is += Math.abs(dict[22] - dict[56])
+    is += Math.abs(dict[25] - dict[50])
+    is += Math.abs(dict[37] - dict[63])
+
+    return is
+  }
 
   function manual(){
     document.addEventListener("keydown", (event) =>{
@@ -269,7 +357,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if(box != null){
         if (["1", "2", "3"].includes(key) && !formElements.includes(event.target.tagName)) {
           if (box.getAttribute("highlighted") == "true"){
-      
+            answered += 1
+            const clampedPercent = Math.max(0, Math.min(100, 100 * answered/62));
+            progress.style.width = clampedPercent + '%';
             const radio = box.childNodes[1];
             radio.childNodes[key-1].childNodes[0].checked = true
             
@@ -386,6 +476,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function Total(file3, list) {
+    /* TODO FIX THIS
+    Brief2.js:481 Error fetching the Total file: TypeError: Cannot read properties of undefined (reading 'slice')
+    at Total (Brief2.js:477:55)
+    at async Promise.all (index 2)
+    at async crossReference (Brief2.js:421:35)
+    */
     try {
         let response = await fetch(file3);
         if (!response.ok) {
