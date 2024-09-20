@@ -434,9 +434,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     let [final, final2, final3] = await Promise.all([
-      temp(file1, list, 0, 8),
-      temp(file2, list, 9, 12),
-      temp(file3, list, 12, 13)
+      score(file1, list, 0, 8),
+      score(file2, list, 9, 12),
+      score(file3, list, 12, 13)
     ]);
     console.log(final)
     console.log(final2)
@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 
-  async function temp(file1, list, a, b) {
+  async function score(file1, list, a, b) {
     try {
       let response = await fetch(file1);
       if (!response.ok) {
