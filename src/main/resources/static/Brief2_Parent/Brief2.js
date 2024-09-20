@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var crv = await crossReference( [inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,organization_of_materials,BRI,ERI,CRI,GEC]);
     content += crv 
-    content += "Negativity Score: " +  negativity_score + " %ile: " + negativity_percentile + "\n"
+    content += "\nNegativity Score: " +  negativity_score + " %ile: " + negativity_percentile + "\n"
     content += "Infrequency Score: " + infrequency_score+ " %ile: " + infrequency_percentile + "\n"
     content += "Inconsistency Score: " + inconsistency_score+ " %ile: " + inconsistency_percentile+ "\n"
     a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(content);
