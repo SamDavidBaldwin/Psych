@@ -162,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         var input = document.querySelector(`input[name="${"options" + box.id.substring(3)}"]:checked`);
         if(input == null){
           allAnswered = false
-          console.log("Not Answered ")
           box.setAttribute("Unanswered", "true")
         }
       });
@@ -173,21 +172,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if(window.confirm(text)){
-        console.log("END")
-        scoring()
+        var info = "Patient Name: " + document.getElementById("Patient Name").value + "\n"
+        info += "Patient Gender: " + document.getElementById("Patient Gender").value + "\n"
+        info += "Patient Age: " + document.getElementById("Patient Age").value + "\n"
+        info += "Patient Grade: " + document.getElementById("Patient Grade").value + "\n"
+        info += "Patient DOB: " + document.getElementById("Date of Birth").value + "\n"
+        info += "Rater Name: " + document.getElementById("Rater's Name").value + "\n"
+        info += "Relationship to Child: " + document.getElementById("Relationship to Child").value + "\n"
+        info += "Today's Date: " + document.getElementById("Today's Date").value + "\n"
+        pname = document.getElementById("Patient Name").value
+        rtc = document.getElementById("Relationship to Child").value
+        scoring(info, pname, rtc)
       }
       else{
-        console.log("Finishing")
       }
     }
   }
 
 
-  function scoring(){
+  async function scoring(info, name){
     const a = document.createElement('a')
-    var content = ""
+    var content = info
     const boxes = container.querySelectorAll('.box');
-    const fileName = 'example.txt';
+    const fileName = "Brief2 Parent " + rtc + " " + name + ".txt";
 
     inhibit_score = 0
     self_monitor_score = 0
@@ -254,8 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if(entry[1][1] == 2 || entry[1][1] == 3){
               infrequency_score += 1
             }
+            break
           case inconsistency_scale.some(pair => pair[0] === index+1 || pair[1] === index+1):
             inconsistency_dict[index+1] = entry[1][1]
+            break
         }
         content = content + index + ": " + input.value + "\n"
       }
@@ -263,34 +272,22 @@ document.addEventListener('DOMContentLoaded', () => {
         content = content + index + ": Did not answer\n"
       }
     });
-    console.log("Inhibit: " +  inhibit_score)   
-    console.log("Self-Monitor: " +  self_monitor_score)   
-    console.log("Shift: " +  shift_score)   
-    console.log("Emotional Control: " +  emotional_control_score)   
-    console.log("Initiate: " +  initiate_score)   
-    console.log("Working Memory: " +  working_memory_score)   
-    console.log("Plan/Organize: " +  plan_organize_score)   
-    console.log("Task-Monitor: " +  task_monitor_score)   
-    console.log("Organization of Materials: " +  organization_of_materials_score)   
+   
     var BRI = inhibit_score + self_monitor_score
     var ERI = shift_score + emotional_control_score
     var CRI = initiate_score + working_memory_score + plan_organize_score + task_monitor_score + organization_of_materials_score
     var GEC = BRI + ERI + CRI
-    console.log("BRI: " + BRI)
-    console.log("ERI: " + ERI)
-    console.log("CRI: " + CRI)
-    console.log("GEC: " + GEC)
     var negativity_percentile = np_calc(negativity_score)
     var infrequency_percentile = if_calc(infrequency_score)
-    console.log("Negativity Score: " +  negativity_score + " %ile: " + negativity_percentile)
-    console.log("Infrequency Score: " + infrequency_score+ " %ile: " + infrequency_percentile)
     inconsistency_score = calcInconsistency(inconsistency_dict)
     var inconsistency_percentile = ic_calc(inconsistency_score)
-    console.log("inconsistency Score: " + inconsistency_score+ " %ile: " + inconsistency_percentile)
 
-    var list = [inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,organization_of_materials,BRI,ERI,CRI,GEC]
-    crossReference(list)
-    
+
+    var crv = await crossReference( [inhibit_score,self_monitor_score,shift_score,emotional_control_score,initiate_score,working_memory_score,plan_organize_score,task_monitor_score,organization_of_materials,BRI,ERI,CRI,GEC]);
+    content += crv 
+    content += "Negativity Score: " +  negativity_score + " %ile: " + negativity_percentile + "\n"
+    content += "Infrequency Score: " + infrequency_score+ " %ile: " + infrequency_percentile + "\n"
+    content += "Inconsistency Score: " + inconsistency_score+ " %ile: " + inconsistency_percentile+ "\n"
     a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(content);
     a.download = fileName;
 
@@ -438,18 +435,14 @@ document.addEventListener('DOMContentLoaded', () => {
       score(file2, list, 9, 12),
       score(file3, list, 12, 13)
     ]);
-    console.log(final)
-    console.log(final2)
-    console.log(final3)
-    //TODO fix this to be better
+  
     output = final[0] + "\n" + final[1] + "\n" + final2[0]+ "\n"+ final[2]+ "\n" + final[3] + "\n"+ final2[1]+ "\n" + final[4] + "\n" + final[5]+ "\n" + final[6]+ "\n"+ final[7] + "\n" +final2[2] + "\n"+ final3
 
-    console.log(output);
+    return output
   } catch (error) {
       console.error('Error in crossReference function:', error);
   }
 }
-
 
   async function score(file1, list, a, b) {
     try {
@@ -479,14 +472,13 @@ document.addEventListener('DOMContentLoaded', () => {
             else{
               clinicalCategory =  "highly elevated"
             } 
-            final.push(arr[0][index + 1] + " T-score: " + tuple[0] + " %ile: " + tuple[1] + " Category: " + clinicalCategory);
+            final.push(arr[0][index + 1] + " [Value: "+ value + " T-score: " + tuple[0] + " %ile: " + tuple[1] + " Category: " + clinicalCategory + "]");
         });
         return final;
     } catch (error) {
         console.error('Error fetching the Scale file:', error);
     }
   }
-
 
   function finder(arr, score, col){
     for (let i = 0; i < arr.length; i++){
@@ -495,7 +487,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
-  
 });
 

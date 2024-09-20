@@ -11,9 +11,13 @@ public class MainController {
 		return "Test Selection";
 	}
 
-	@RequestMapping("/Brief2")
-	public String Brief2() {
-		return "Brief2";
+	@RequestMapping("/Brief2_Parent")
+	public String Brief2P() {
+		return "Brief2_Parent";
+	}
+	@RequestMapping("/Brief2_Teacher")
+	public String Brief2T() {
+		return "Brief2_Teacher";
 	}
 
 	
