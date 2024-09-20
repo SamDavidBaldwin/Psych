@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   //console.log('DOM fully loaded and parsed');
-
   const container = document.getElementById('container');
   document.getElementById("Submit").addEventListener("click", tabulate)
   const progress = document.getElementById("progress-bar")
   let output = new Array(12).fill(null);
-  createBox()
+  createBox(version)
   manual()
 
   const ASO = {
@@ -64,8 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
       next.scrollIntoView({ behavior: 'smooth' });
   }
 
-  function createBox(index) {
-    fetch('Brief2_Parent/Brief2 Questions (Parent).txt')
+  function createBox(index, version) {
+    if(version == "P"){
+      file = 'Parent/Brief2 Questions (Parent).txt'
+    }
+    else{
+      file = 'Teacher/Brief2 Questions (Teacher).txt'
+    }
+    fetch(file)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);

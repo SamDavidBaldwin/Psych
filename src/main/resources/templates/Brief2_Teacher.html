@@ -1,8 +1,68 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Working on teacher </h1>
-<h2>:3</h2>
-<a href="/">Go Home</a>
-</body>
+  <head>
+    <link rel='stylesheet' type='text/css' href='Brief2.css'>
+  </head>
+      <h1> Welcome to the Brief2 Test</h1>
+
+      <body>
+        <form id = "Patient Information">
+        <div class = "form-group"> 
+          <label id = "Patient Name Label"> Patient Name </label>
+          <input type = text id = "Patient Name" name = "PNameInput">
+        </div>
+
+        <div class = "form-group"> 
+          <label id = "Patient Gender Label"> Gender </label>
+          <select id="Patient Gender" name="PGenderInput">
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+            <option value="PreferNotToSay">Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class = "form-group">  
+          <label id = "Patient Age Label"> Age </label>
+          <input type = number id = "Patient Age" name = "PAgeInput">
+        </div>
+
+        <div class = "form-group">
+          <label id = "Patient Grade Label"> Grade </label>
+          <input type = number id = "Patient Grade" name = "PGradeInput">
+        </div>
+
+        <div class = "form-group">
+          <label id = "Patient DOB Label"> Date of Birth </label>
+          <input type = date id = "Date of Birth" name = "PDOBInput">
+        </div>
+
+        <div class = "form-group">
+          <label id = "Rater Name Label"> Rater's Name</label>
+          <input type = text id = "Rater's Name" name = "RNameInput">
+        </div>
+
+        <div class = "form-group">
+          <label id = "Rater Relationship Label"> Relationship to Child </label>
+          <input type = text id = "Relationship to Child" name = "RRelatioship Input">
+        </div>
+
+        <div class = "form-group">
+          <label id = "Date Label"> Today's Date </label>
+          <input type = date id = "Today's Date" name = "DateInput">
+        </div>
+      </form>
+        </div>
+        <div id="container"> </div>
+        <script>
+          var version = "T"
+        </script>
+        </script>
+        <script src="Brief2.js"></script>
+        <div id = "buttons"> 
+          <button id = "Submit">Submit</button>
+        </div>
+        <div class="progress-bar" id = "progress-bar"></div>
+    </body>
 </html>
