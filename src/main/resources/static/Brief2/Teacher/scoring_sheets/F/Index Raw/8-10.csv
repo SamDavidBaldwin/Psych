@@ -1,7 +1,4 @@
 Index Raw,Behavior Regulation,Emotion Regulation,Cognitive Regulation
-96,"[null, null]","[null, null]",
-95,"[null, null]","[null, null]",
-94,"[null, null]","[null, null]",
 93,"[null, null]","[null, null]",
 92,"[null, null]","[null, null]",
 91,"[null, null]","[null, null]",
@@ -56,15 +53,15 @@ Index Raw,Behavior Regulation,Emotion Regulation,Cognitive Regulation
 42,"[null, null]",,
 41,"[null, null]",,
 40,"[null, null]",,
-39,"[null, null]",,
-38,"[null, null]",,
-37,"[null, null]",,
+39,,,
+38,,,
+37,,,
 36,,,
 35,,,
 34,,,
 33,,,
 32,,,
-31,,,"[null, null]"
+31,,,
 30,,,"[null, null]"
 29,,,"[null, null]"
 28,,,"[null, null]"
@@ -83,4 +80,3 @@ Index Raw,Behavior Regulation,Emotion Regulation,Cognitive Regulation
 15,,"[null, null]","[null, null]"
 14,,"[null, null]","[null, null]"
 13,,"[null, null]","[null, null]"
-12,,"[null, null]","[null, null]"

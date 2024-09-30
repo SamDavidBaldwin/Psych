@@ -1,85 +1,82 @@
 Index Raw,Behavior Regulation,Emotion Regulation,Cognitive Regulation
-96,"[null, null]","[null, null]",
-95,"[null, null]","[null, null]",
-94,"[null, null]","[null, null]",
-93,"[null, null]","[null, null]",
-92,"[null, null]","[null, null]",
-91,"[null, null]","[null, null]",
-90,"[null, null]","[null, null]",
-89,"[null, null]","[null, null]",
-88,"[null, null]","[null, null]",
-87,"[null, null]","[null, null]",
-86,"[null, null]","[null, null]",
-85,"[null, null]","[null, null]",
-84,"[null, null]","[null, null]",
-83,"[null, null]","[null, null]",
-82,"[null, null]","[null, null]",
-81,"[null, null]","[null, null]",
-80,"[null, null]","[null, null]",
-79,"[null, null]","[null, null]",
-78,"[null, null]","[null, null]",
-77,"[null, null]","[null, null]",
-76,"[null, null]","[null, null]",
-75,"[null, null]","[null, null]",
-74,"[null, null]","[null, null]",
-73,"[null, null]","[null, null]",
-72,"[null, null]","[null, null]",
-71,"[null, null]","[null, null]",
-70,"[null, null]","[null, null]",
-69,"[null, null]","[null, null]",
-68,"[null, null]","[null, null]",
-67,"[null, null]","[null, null]",
-66,"[null, null]","[null, null]",
-65,"[null, null]","[null, null]",
-64,"[null, null]","[null, null]",
-63,"[null, null]","[null, null]",
-62,"[null, null]","[null, null]",
-61,"[null, null]","[null, null]",
-60,"[null, null]","[null, null]",
-59,"[null, null]","[null, null]",
-58,"[null, null]","[null, null]",
-57,"[null, null]","[null, null]",
-56,"[null, null]","[null, null]",
-55,"[null, null]","[null, null]",
-54,"[null, null]","[null, null]",
-53,"[null, null]","[null, null]",
-52,"[null, null]","[null, null]",
-51,"[null, null]","[null, null]",
-50,"[null, null]","[null, null]",
-49,"[null, null]","[null, null]",
-48,"[null, null]",,
-47,"[null, null]",,
-46,"[null, null]",,
-45,"[null, null]",,
-44,"[null, null]",,
-43,"[null, null]",,
-42,"[null, null]",,
-41,"[null, null]",,
-40,"[null, null]",,
-39,"[null, null]",,
-38,"[null, null]",,
-37,"[null, null]",,
-36,,,
-35,,,
-34,,,
-33,,,
-32,,,
-31,,,"[null, null]"
-30,,,"[null, null]"
-29,,,"[null, null]"
-28,,,"[null, null]"
-27,,,"[null, null]"
-26,,,"[null, null]"
-25,,,"[null, null]"
-24,,,"[null, null]"
-23,,,"[null, null]"
-22,,,"[null, null]"
-21,,,"[null, null]"
-20,,,"[null, null]"
-19,,,"[null, null]"
-18,,,"[null, null]"
-17,,,"[null, null]"
-16,,,"[null, null]"
+93,"[null, null]","[null, null]","[82,>99]"
+92,"[null, null]","[null, null]","[81,>99]"
+91,"[null, null]","[null, null]","[80,>99]"
+90,"[null, null]","[null, null]","[79,>99]"
+89,"[null, null]","[null, null]","[79,>99]"
+88,"[null, null]","[null, null]","[78,>99]"
+87,"[null, null]","[null, null]","[77,>99]"
+86,"[null, null]","[null, null]","[77,>99]"
+85,"[null, null]","[null, null]","[76,>99]"
+84,"[null, null]","[null, null]","[75,99]"
+83,"[null, null]","[null, null]","[75,99]"
+82,"[null, null]","[null, null]","[74,99]"
+81,"[null, null]","[null, null]","[73,98]"
+80,"[null, null]","[null, null]","[72,98]"
+79,"[null, null]","[null, null]","[72,98]"
+78,"[null, null]","[null, null]","[71,98]"
+77,"[null, null]","[null, null]","[70,98]"
+76,"[null, null]","[null, null]","[70,95]"
+75,"[null, null]","[null, null]","[69,95]"
+74,"[null, null]","[null, null]","[68,93]"
+73,"[null, null]","[null, null]","[68,92]"
+72,"[null, null]","[null, null]","[67,92]"
+71,"[null, null]","[null, null]","[66,90]"
+70,"[null, null]","[null, null]","[65,90]"
+69,"[null, null]","[null, null]","[65,90]"
+68,"[null, null]","[null, null]","[64,90]"
+67,"[null, null]","[null, null]","[63,88]"
+66,"[null, null]","[null, null]","[63,87]"
+65,"[null, null]","[null, null]","[62,86]"
+64,"[null, null]","[null, null]","[61,84]"
+63,"[null, null]","[null, null]","[61,84]"
+62,"[null, null]","[null, null]","[60,84]"
+61,"[null, null]","[null, null]","[59,82]"
+60,"[null, null]","[null, null]","[58,79]"
+59,"[null, null]","[null, null]","[58,77]"
+58,"[null, null]","[null, null]","[57,76]"
+57,"[null, null]","[null, null]","[56,73]"
+56,"[null, null]","[null, null]","[56,72]"
+55,"[null, null]","[null, null]","[55,71]"
+54,"[null, null]","[null, null]","[54,71]"
+53,"[null, null]","[null, null]","[54,67]"
+52,"[null, null]","[null, null]","[53,66]"
+51,"[null, null]","[null, null]","[52,64]"
+50,"[null, null]","[null, null]","[52,63]"
+49,"[null, null]","[null, null]","[51,60]"
+48,"[null, null]","[>90,>99]","[49,60]"
+47,"[null, null]","[>90,>99]","[49,58]"
+46,"[null, null]","[89,>99]","[49,56]"
+45,"[null, null]","[88,99]","[47,54]"
+44,"[null, null]","[86,99]","[47,51]"
+43,"[null, null]","[85,99]","[47,51]"
+42,"[null, null]","[83,99]","[45,48]"
+41,"[null, null]","[82,99]","[45,45]"
+40,"[null, null]","[80,99]","[44,43]"
+39,,"[77,99]","[44,41]"
+38,,"[77,97]","[42,36]"
+37,,"[77,97]","[42,30]"
+36,,"[75,97]","[42,27]"
+35,,"[74,97]","[41,25]"
+34,,"[72,97]","[40,20]"
+33,,"[70,95]","[39,17]"
+32,,"[69,95]","[39,9]"
+31,,"[67,93]","[38,6]"
+30,,"[63,91]","[null, null]"
+29,,"[63,90]","[null, null]"
+28,,"[62,88]","[null, null]"
+27,,"[58,84]","[null, null]"
+26,,"[58,82]","[null, null]"
+25,,"[55,82]","[null, null]"
+24,,"[55,81]","[null, null]"
+23,,"[52,76]","[null, null]"
+22,,"[52,72]","[null, null]"
+21,,"[49,64]","[null, null]"
+20,,"[48,60]","[null, null]"
+19,,"[46,53]","[null, null]"
+18,,"[45,45]","[null, null]"
+17,,"[43,36]","[null, null]"
+16,,"[41,25]","[null, null]"
 15,,"[null, null]","[null, null]"
 14,,"[null, null]","[null, null]"
 13,,"[null, null]","[null, null]"

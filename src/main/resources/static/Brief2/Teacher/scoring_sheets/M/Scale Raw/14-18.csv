@@ -1,22 +1,22 @@
 Raw Score,Inhibit,Self-Monitor,Shift,Emotional Crontrol,Initiate,Working Memory,Plan/Organize,Task-Monitor,Organization of Materials
-24,,"[null, null]",,,"[null, null]",,,"[null, null]","[null, null]"
-23,,"[null, null]",,,"[null, null]",,,"[null, null]","[null, null]"
-22,,"[null, null]",,,"[null, null]",,,"[null, null]","[null, null]"
-21,,"[null, null]",,,"[null, null]",,,"[null, null]","[null, null]"
-20,,"[null, null]",,,"[null, null]",,,"[null, null]","[null, null]"
-19,,"[null, null]",,,"[null, null]",,,"[null, null]","[null, null]"
-18,,"[null, null]",,,"[null, null]",,,,"[null, null]"
-17,,"[null, null]",,,"[null, null]",,,,"[null, null]"
-16,,"[null, null]",,,"[null, null]",,,,"[null, null]"
-15,,,,,"[null, null]",,,,
-14,,,,,"[null, null]",,,,
-13,,,,,"[null, null]",,,,
-12,,,,,,,,,
-11,,,,,,,,,
-10,,,,,,,,,
-9,,,,,,,,,
-8,,,,,,,,,
-7,"[null, null]",,"[null, null]","[null, null]",,"[null, null]","[null, null]",,
-6,"[null, null]",,"[null, null]","[null, null]",,"[null, null]","[null, null]",,
-5,"[null, null]",,"[null, null]","[null, null]",,"[null, null]","[null, null]","[null, null]",
-4,"[null, null]","[null, null]","[null, null]","[null, null]",,"[null, null]","[null, null]","[null, null]","[null, null]"
+24,"[87,>99]","[null, null]","[>90,>99]","[>90,>99]","[null, null]","[>90,>99]","[84,>99]","[null, null]","[null, null]"
+23,"[85,98]","[null, null]","[>90,99]","[>90,99]","[null, null]","[89,99]","[81,99]","[null, null]","[null, null]"
+22,"[82,97]","[null, null]","[>90,99]","[>90,98]","[null, null]","[86,99]","[78,98]","[null, null]","[null, null]"
+21,"[79,97]","[null, null]","[>90,99]","[>90,98]","[null, null]","[83,99]","[76,97]","[null, null]","[null, null]"
+20,"[77,96]","[null, null]","[87,99]","[88,98]","[null, null]","[80,98]","[73,96]","[null, null]","[null, null]"
+19,"[74,96]","[null, null]","[83,98]","[84,98]","[null, null]","[77,98]","[71,96]","[null, null]","[null, null]"
+18,"[71,95]","[null, null]","[80,98]","[81,98]","[null, null]","[74,96]","[68,94]","[79,>99]","[null, null]"
+17,"[68,93]","[null, null]","[76,98]","[77,98]","[null, null]","[71,96]","[65,92]","[76,97]","[null, null]"
+16,"[66,92]","[null, null]","[73,97]","[74,96]","[null, null]","[68,94]","[63,90]","[73,96]","[null, null]"
+15,"[63,90]","[84,>99]","[69,96]","[70,95]","[null, null]","[65,91]","[60,86]","[70,95]","[>90,>99]"
+14,"[60,88]","[80,98]","[65,93]","[67,93]","[null, null]","[62,89]","[58,80]","[67,93]","[88,99]"
+13,"[58,87]","[76,97]","[62,89]","[63,91]","[null, null]","[59,86]","[55,75]","[64,91]","[83,99]"
+12,"[55,84]","[72,96]","[58,87]","[60,90]","[82,>99]","[56,83]","[52,71]","[60,89]","[78,98]"
+11,"[52,78]","[68,93]","[55,83]","[56,88]","[77,97]","[53,77]","[50,67]","[57,78]","[73,96]"
+10,"[49,73]","[63,92]","[51,77]","[53,85]","[72,96]","[50,68]","[47,60]","[54,71]","[68,94]"
+9,"[47,64]","[59,86]","[47,65]","[49,83]","[67,94]","[46,60]","[44,50]","[51,69]","[63,91]"
+8,"[44,48]","[55,80]","[44,51]","[46,68]","[62,92]","[43,52]","[42,34]","[48,64]","[59,86]"
+7,"[null, null]","[51,75]","[null, null]","[null, null]","[58,82]","[null, null]","[null, null]","[45,56]","[54,82]"
+6,"[null, null]","[47,65]","[null, null]","[null, null]","[53,74]","[null, null]","[null, null]","[42,42]","[49,74]"
+5,"[null, null]","[43,48]","[null, null]","[null, null]","[48,68]","[null, null]","[null, null]","[null, null]","[44,61]"
+4,"[null, null]","[null, null]","[null, null]","[null, null]","[40,55]","[null, null]","[null, null]","[null, null]","[null, null]"
