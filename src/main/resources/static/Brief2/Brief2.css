@@ -3,6 +3,10 @@
   cursor: pointer
 }
 
+h1 {
+  text-align:center;
+}
+
 .box[Unanswered = true]{
   background-color: yellow;
   cursor: pointer
