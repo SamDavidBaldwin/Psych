@@ -1,4 +1,4 @@
-import { myFunction } from "../testing/functions.js";
+import { createBoxes } from "../helper/functions.js";
 document.addEventListener('DOMContentLoaded', () => {
   //console.log('DOM fully loaded and parsed');
   const container = document.getElementById('container');

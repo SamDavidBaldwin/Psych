@@ -1,0 +1,74 @@
+.box[highlighted = true]{
+  background-color: pink;
+  cursor: pointer
+}
+
+h1 {
+  text-align:center;
+}
+
+.box[Unanswered = true]{
+  background-color: yellow;
+  cursor: pointer
+}
+
+.box {
+    background-color: blue;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    scroll-margin-top: 100px; 
+}
+
+.box.radio-group.radio{
+  /*pointer-events: none;*/
+  opacity: 0.5
+}
+
+#container {
+  align-items: center;
+  align-content: center;
+}
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group[unanswered = true]{
+  color: blueviolet;
+  animation: flash 1s infinite
+
+}
+
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 10px;
+  background-color: green;
+  z-index: 1000; 
+}
+
+
+@keyframes flash {
+  0% {
+      background-color: red;
+  }
+  50% {
+      background-color: transparent; /* or any other color */
+  }
+  100% {
+      background-color: red;
+  }
+}
